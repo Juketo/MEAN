@@ -21,3 +21,35 @@ app.use(express.static('./public'));
 var indice = req.url.indexOf('=');
 var parametro = req.url.substring(indice+1);
 res.end(parametro);
+
+// ----------------------------------
+
+// todo arquivo dentro de node_modules pode ser acessado através da função 
+// require, só passando o nome do módulo. Por isso temos:
+var express = require('express');
+
+// ----------------------------------
+
+'./'  // para buscar na mesma pasta
+'../' // para voltar pra cima
+
+alurapic/z.js
+alurapic/config/b.js
+alurapic/app/c.js
+alurapic/x/y/d.js
+
+// módulo b.js
+require('../app/c');
+// módulo b.js
+require('../app/c');
+// módulo b.js
+require('./app/c');
+// módulo c.js
+require('../x/y/d');
+// módulo c.js
+require('../x/y/d');
+// módulo z importando b
+require('./b');
+// módulo z.js importando b.js
+require('./config/b');
+
